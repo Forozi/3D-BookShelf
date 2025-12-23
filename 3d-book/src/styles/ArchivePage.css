@@ -1,0 +1,185 @@
+/* ArchivePage.css */
+.archive-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.archive-tag {
+  border: 1px solid #8b0000;
+  color: #8b0000;
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  opacity: 0.7;
+  margin-bottom: 10px;
+}
+
+.archive-btn-edit {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #555;
+}
+
+.archive-title {
+  margin: 10px 0 5px 0;
+  font-size: 32px;
+  line-height: 1.1;
+  font-family: 'Arial', 'Arial', serif;
+}
+
+.archive-author {
+  margin: 0;
+  color: #555;
+  font-size: 18px;
+  font-style: italic;
+  font-family: 'Arial', serif;
+}
+
+.archive-author-container {
+  margin-bottom: 30px;
+}
+
+/* Edit Inputs */
+.archive-input-base {
+  background: rgba(0,0,0,0.05);
+  border: none;
+  border-bottom: 1px solid #8b0000;
+  font-family: inherit;
+  font-size: inherit;
+  color: #333;
+  width: 100%;
+  padding: 2px 5px;
+  box-sizing: border-box;
+  outline: none;
+  border-radius: 2px;
+}
+
+.archive-input-title {
+  font-size: 24px;
+  font-family: 'Arial', serif;
+  margin: 10px 0;
+}
+
+.archive-input-author {
+  font-size: 18px;
+  font-style: italic;
+}
+
+/* Cover Upload */
+.archive-cover-section {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px dashed #ccc;
+  text-align: center;
+}
+
+.archive-cover-preview {
+  height: 60px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.archive-cover-hint {
+  font-size: 10px;
+  color: #666;
+}
+
+.archive-btn-upload {
+  background: #eee;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  font-size: 11px;
+  cursor: pointer;
+  color: #000;
+}
+
+/* Metadata Table */
+.archive-metadata {
+  font-size: 14px;
+  line-height: 2.4;
+  border-top: 2px solid #333;
+  padding-top: 10px;
+}
+
+.archive-meta-row {
+  border-bottom: 1px dashed #bbb;
+  margin: 0;
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.archive-meta-label {
+  opacity: 0.6;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.archive-meta-value {
+  float: right;
+  font-family: monospace;
+}
+
+.archive-meta-value.text {
+  font-family: inherit;
+  font-style: italic;
+}
+
+.archive-input-small {
+  width: 80px;
+  text-align: right;
+}
+
+.archive-select {
+  width: 120px;
+  text-align: right;
+  background: transparent;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* Actions */
+.archive-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.archive-btn {
+  flex: 1;
+  padding: 8px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.archive-btn-save { background: #333; color: #fff; }
+.archive-btn-cancel { background: transparent; color: #8b0000; border: 1px solid #8b0000; }
+
+.archive-footer {
+  margin-top: auto;
+  text-align: center;
+  opacity: 0.4;
+  color: #000;
+}
+
+.archive-logo-icon {
+  font-size: 50px;
+  line-height: 1;
+}
+
+.archive-logo-text {
+  font-size: 9px;
+  letter-spacing: 3px;
+  margin-top: 5px;
+  text-transform: uppercase;
+}

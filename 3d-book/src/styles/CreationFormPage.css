@@ -1,0 +1,54 @@
+/* CreationFormPage.css */
+.creation-header {
+  border-bottom: 2px solid #333;
+  padding-bottom: 5px;
+  margin-top: 0;
+}
+
+.creation-label {
+  font-size: 12px;
+  display: block;
+  margin-top: 10px;
+  color: #000;
+}
+
+.creation-input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background: transparent;
+  margin-bottom: 5px;
+  padding: 5px;
+  font-family: 'Arial', serif;
+  font-size: 16px;
+  outline: none;
+  color: #000;
+}
+
+.creation-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  
+}
+
+.creation-col {
+  flex: 1;
+}
+
+.creation-textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background: transparent;
+  margin-bottom: 15px;
+  padding: 5px;
+  font-family: 'Arial', serif;
+  font-size: 16px;
+  outline: none;
+  height: 80px;
+  resize: none;
+  background-image: linear-gradient(transparent 96%, rgba(0,0,0,0.1) 97%);
+  background-size: 100% 30px;
+  color: #000;
+}

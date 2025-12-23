@@ -1,0 +1,14 @@
+/* BookModel.css */
+.book-html-container {
+  width: 380px;
+  height: 580px;
+  background: transparent;
+  padding: 20px;
+  transform: scale(2);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Arial', 'Garamond', serif;
+  color: #2b2b2b;
+  box-sizing: border-box;
+  user-select: none;
+}

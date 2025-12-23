@@ -1,0 +1,112 @@
+/* JournalPage.css */
+.journal-header {
+  margin: 0 0 15px 0;
+  border-bottom: 4px double #000;
+  padding-bottom: 5px;
+  text-align: center;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.journal-textarea {
+  flex-grow: 1;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding: 10px 5px;
+  font-family: 'Arial', serif;
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.6;
+  resize: none;
+  margin-bottom: 15px;
+  color: #222;
+  outline: none;
+  background-image: linear-gradient(transparent 96%, rgba(0,0,0,0.1) 97%);
+  background-size: 100% 30px;
+}
+
+.journal-footer {
+  padding: 15px 0;
+  border-top: 1px solid #888;
+}
+
+.journal-rating-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.journal-rating-label {
+  font-weight: bold;
+  font-size: 14px;
+  font-style: italic;
+  font-family: serif;
+}
+
+.journal-stars {
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.journal-star {
+  font-size: 24px;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+.journal-star.active { color: #b8860b; text-shadow: 0px 1px 2px rgba(0,0,0,0.2); }
+.journal-star.inactive { color: #ccc; }
+
+.journal-completion-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.journal-btn-completion {
+  width: 80%;
+  padding: 10px 0;
+  font-family: 'Arial', serif;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+/* States for completion button */
+.journal-btn-completion.completed { background: #355e3b; color: #fff; border: 2px solid #355e3b; }
+.journal-btn-completion.completed:hover { background: #557a5b; border-color: #557a5b; }
+
+.journal-btn-completion.incomplete { background: transparent; color: #333; border: 2px solid #555; }
+.journal-btn-completion.incomplete:hover { border-color: #000; background: rgba(0,0,0,0.05); }
+
+.journal-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.journal-btn {
+  flex: 1;
+  padding: 8px;
+  background: transparent;
+  color: #333;
+  border: 2px solid #333;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+.journal-btn:hover { background: #333; color: #fff; }
+
+.journal-btn-close {
+  border-color: #8b0000;
+  color: #8b0000;
+}
+.journal-btn-close:hover { background: #8b0000; color: #fff; }
