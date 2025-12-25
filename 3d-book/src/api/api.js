@@ -54,7 +54,7 @@ export const api = {
         }
     },
 
-    // Create a new book (Handles file upload automatically)
+    // Create a new book
     createBook: async (bookData) => {
         const user = getUser();
         if (!user) throw new Error("Not logged in");
@@ -67,23 +67,21 @@ export const api = {
         formData.append('publishDate', bookData.publishDate);
         formData.append('notes', bookData.notes);
 
-        // Check if coverUrl is a blob URL (new upload) or string
         if (bookData.coverFile) {
             formData.append('cover', bookData.coverFile);
         }
 
         const res = await fetch(`${API_BASE}/books`, {
             method: 'POST',
-            body: formData // No Content-Type header needed for FormData
+            body: formData
         });
         return await res.json();
     },
 
-    // Update Book (Partial update)
+    // Update Book
     updateBook: async (id, updates) => {
         const formData = new FormData();
         
-        // Append all updates to FormData
         Object.keys(updates).forEach(key => {
             if (key === 'coverFile' && updates[key]) {
                  formData.append('cover', updates[key]);

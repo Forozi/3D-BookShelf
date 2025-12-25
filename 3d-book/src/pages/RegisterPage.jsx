@@ -21,11 +21,12 @@ export default function RegisterPage({ onRegisterSuccess, onCancel }) {
       setLoading(false);
       
       if (res.success) {
-        alert("Registration Successful! Please Login.");
+        alert("Đăng ký thành công! Vui lòng đăng nhập.");
         onRegisterSuccess();
       } else {
-        setError(res.message || "Registration failed");
+        setError(res.message || "Đăng ký thất bại");
       }
+    // eslint-disable-next-line no-unused-vars
     } catch (err) {
       setLoading(false);
       setError("Server connection failed");
@@ -49,13 +50,14 @@ export default function RegisterPage({ onRegisterSuccess, onCancel }) {
   const inputStyle = {
     width: '100%', padding: '12px', margin: '8px 0',
     border: '1px solid #ccc', background: '#fafafa',
-    fontFamily: 'inherit', boxSizing: 'border-box'
+    fontFamily: 'inherit', boxSizing: 'border-box', 
+    color: '#000'
   };
 
   return (
     <div style={overlayStyle}>
       <div style={cardStyle}>
-        <h2 style={{ color: '#355e3b', margin: '0 0 20px 0', letterSpacing: '1px' }}>NEW MEMBERSHIP</h2>
+        <h2 style={{ color: '#355e3b', margin: '0 0 20px 0', letterSpacing: '1px' }}>Đăng ký</h2>
         
         {error && <div style={{color: 'red', fontSize: '12px', marginBottom: '10px'}}>{error}</div>}
 
@@ -63,7 +65,7 @@ export default function RegisterPage({ onRegisterSuccess, onCancel }) {
           <input 
             name="email"
             type="text" 
-            placeholder="Choose Username" 
+            placeholder="Nhập email" 
             style={inputStyle}
             value={formData.email}
             onChange={handleChange}
@@ -72,7 +74,7 @@ export default function RegisterPage({ onRegisterSuccess, onCancel }) {
           <input 
             name="password"
             type="password" 
-            placeholder="Create Password" 
+            placeholder="Tạo mật khẩu" 
             style={inputStyle}
             value={formData.password}
             onChange={handleChange}
@@ -89,7 +91,7 @@ export default function RegisterPage({ onRegisterSuccess, onCancel }) {
               fontWeight: 'bold', letterSpacing: '1px', opacity: loading ? 0.7 : 1
             }}
           >
-            {loading ? "PROCESSING..." : "REGISTER"}
+            {loading ? "Đang xử lý..." : "Đăng ký"}
           </button>
         </form>
 
@@ -97,7 +99,7 @@ export default function RegisterPage({ onRegisterSuccess, onCancel }) {
           onClick={onCancel}
           style={{ marginTop: '20px', fontSize: '13px', cursor: 'pointer', textDecoration: 'underline', color: '#555' }}
         >
-          Return to Login
+          Quay lại đăng nhập
         </p>
       </div>
     </div>
