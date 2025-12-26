@@ -5,6 +5,7 @@ const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const bcrypt = require('bcryptjs'); // hash
 
 const app = express();
 
@@ -57,18 +58,30 @@ const mapBook = (row) => ({
 // 1. AUTH: Login
 app.post('/api/login', (req, res) => {
     const { email, password } = req.body;
+    const normalizedEmail = typeof email === 'string' ? email.trim().toLowerCase() : email;
+
+    // @stu.ptit.edu
+    if (!normalizedEmail || !normalizedEmail.endsWith('@stu.ptit.edu')) {
+        return res.status(400).json({ message: "Only PTIT email addresses are allowed" });
+    }
+
     const sql = "SELECT * FROM users WHERE username = ?";
     
-    db.query(sql, [email], (err, results) => {
+    db.query(sql, [normalizedEmail], (err, results) => {
         if (err) return res.status(500).json({ error: err.message });
-        
-        if (results.length === 0 || results[0].password !== password) {
-            return res.status(401).json({ message: "Invalid credentials" });
-        }
-        
-        res.json({ 
-            success: true, 
-            user: { id: results[0].id, name: results[0].username } 
+
+        if (results.length === 0) return res.status(401).json({ message: "Invalid credentials" });
+
+        // hashed password
+        bcrypt.compare(password, results[0].password, (err, isMatch) => {
+            if (err) return res.status(500).json({ error: err.message });
+            if (!isMatch) return res.status(401).json({ message: "Invalid credentials" });
+
+            res.json({ 
+                success: true, 
+                user: { id: results[0].id, name: results[0].username } 
+            });
+
         });
     });
 });
@@ -76,14 +89,25 @@ app.post('/api/login', (req, res) => {
 // 2. AUTH: Register
 app.post('/api/register', (req, res) => {
     const { email, password } = req.body;
-    const sql = "INSERT INTO users (username, password) VALUES (?, ?)";
-    
-    db.query(sql, [email, password], (err, result) => {
-        if (err) {
-            if (err.code === 'ER_DUP_ENTRY') return res.status(400).json({ message: "User already exists" });
-            return res.status(500).json({ error: err.message });
-        }
-        res.json({ success: true, userId: result.insertId });
+    const normalizedEmail = typeof email === 'string' ? email.trim().toLowerCase() : email;
+
+    // Only allow @stu.ptit.edu addresses
+    if (!normalizedEmail || !normalizedEmail.endsWith('@stu.ptit.edu')) {
+        return res.status(400).json({ message: "Only @stu.ptit.edu email addresses are allowed" });
+    }
+
+    // Hash the password b4 saving to dtb
+    bcrypt.hash(password, 10, (err, hashedPassword) => {
+        if (err) return res.status(500).json({ error: err.message });
+
+        const sql = "INSERT INTO users (username, password) VALUES (?, ? )";
+        db.query(sql, [normalizedEmail, hashedPassword], (err, result) => {
+            if (err) {
+                if (err.code === 'ER_DUP_ENTRY') return res.status(400).json({ message: "User already exists" });
+                return res.status(500).json({ error: err.message });
+            }
+            res.json({ success: true, userId: result.insertId });
+        });
     });
 });
 
@@ -164,12 +188,12 @@ app.put('/api/books/:id', upload.single('cover'), (req, res) => {
 });
 
 // 6. Delete BOOKS
-app.delete('/api/books/:id', (req, res) => {
-    db.query("DELETE FROM books WHERE id = ?", [req.params.id], (err) => {
-        if (err) return res.status(500).json({ error: err.message });
-        res.json({ success: true });
-    });
-});
+// app.delete('/api/books/:id', (req, res) => {
+//     db.query("DELETE FROM books WHERE id = ?", [req.params.id], (err) => {
+//         if (err) return res.status(500).json({ error: err.message });
+//         res.json({ success: true });
+//     });
+// });
 
-const PORT = 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// const PORT = 5000;
+// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
